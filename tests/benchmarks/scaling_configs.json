@@ -1,0 +1,70 @@
+{
+  "scaling_n_mf": {
+    "description": "Dedicated matrix-free n-scaling sweep. The n ladder is selected by the active matrix-free capability tier.",
+    "benchmark_variety": "matrix_free_n_scaling",
+    "benchmark_track": "scaling_n_mf",
+    "n_selection_policy": "config:scaling_n_mf",
+    "methods": ["matrix_free"],
+    "n_values_by_tier": {
+      "xsmall": [2000, 5000],
+      "small": [5000, 10000],
+      "medium": [10000, 25000, 50000],
+      "large": [10000, 50000, 100000, 150000],
+      "xlarge": [10000, 50000, 100000, 150000]
+    },
+    "dims": [5, 17],
+    "max_iterations": 100,
+    "enable_early_stopping": false,
+    "prediction_workload_variety": "matrix_free_n_scaling",
+    "cases": [
+      {
+        "framework": "mojogp",
+        "prediction_mode": "love",
+        "mojogp_solver_policy": "route_default",
+        "case_variant": "route_default"
+      },
+      {
+        "framework": "gpytorch",
+        "prediction_mode": "love",
+        "comparison_mojogp_case_variant": "strict_fair"
+      },
+      {
+        "framework": "mojogp",
+        "prediction_mode": "love",
+        "mojogp_solver_policy": "strict_fair",
+        "case_variant": "strict_fair"
+      }
+    ]
+  },
+  "scaling_n_mf_smoke": {
+    "description": "Local smoke of the matrix-free n-scaling config shape.",
+    "benchmark_variety": "matrix_free_n_scaling",
+    "benchmark_track": "scaling_n_mf",
+    "n_selection_policy": "config:scaling_n_mf_smoke",
+    "methods": ["matrix_free"],
+    "n_values": [2000],
+    "dims": [5],
+    "max_iterations": 1,
+    "enable_early_stopping": false,
+    "prediction_workload_variety": "matrix_free_n_scaling",
+    "cases": [
+      {
+        "framework": "mojogp",
+        "prediction_mode": "love",
+        "mojogp_solver_policy": "route_default",
+        "case_variant": "route_default"
+      },
+      {
+        "framework": "gpytorch",
+        "prediction_mode": "love",
+        "comparison_mojogp_case_variant": "strict_fair"
+      },
+      {
+        "framework": "mojogp",
+        "prediction_mode": "love",
+        "mojogp_solver_policy": "strict_fair",
+        "case_variant": "strict_fair"
+      }
+    ]
+  }
+}

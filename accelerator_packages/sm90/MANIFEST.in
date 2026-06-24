@@ -1,0 +1,2 @@
+include src/mojogp_cuda_sm90/mojogp_jit_engine.so
+prune src/mojogp_cuda_sm90/isolated_engine_loads

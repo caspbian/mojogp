@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mojogp-cuda-sm75"
+version = "0.26.6.0"
+description = "MojoGP prebuilt CUDA sm75 accelerator engine"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "caspbian" }]
+requires-python = ">=3.10,<3.12"
+dependencies = ["mojogp==0.26.6.0"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mojogp_cuda_sm75 = ["*.so"]
+
+[tool.uv.sources]
+mojogp = { path = "../..", editable = true }

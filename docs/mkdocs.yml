@@ -1,0 +1,83 @@
+site_name: MojoGP
+site_description: Exact Gaussian Process regression with JIT-compiled Mojo GPU kernels.
+site_url: https://caspbian.github.io/mojogp/
+repo_url: https://github.com/caspbian/mojogp
+repo_name: caspbian/mojogp
+strict: true
+docs_dir: .
+site_dir: ../site
+exclude_docs: |
+  benchmark/
+  figures/
+  image.png
+  misc/
+  mojo_*.md
+  plan/
+  report/
+  templates/
+
+theme:
+  name: material
+  features:
+    - content.code.copy
+    - navigation.sections
+    - navigation.top
+    - toc.follow
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Accelerator Targets: getting-started/accelerator-targets.md
+      - Quickstart: getting-started/quickstart.md
+  - Feature Support:
+      - Support Status: features/support-status.md
+      - Feature Matrix: FEATURE_MATRIX.md
+      - API Surface: API.md
+  - API Reference:
+      - Overview: reference/index.md
+      - Public Package: reference/package.md
+      - Single Output: reference/single-output.md
+      - Multi Output: reference/multi-output.md
+      - Kernels: reference/kernels.md
+      - Feature Support: reference/feature-support.md
+      - Utilities: reference/utilities.md
+  - Releases:
+      - 0.26.6.0: releases/0.26.6.0.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths:
+            - ..
+          options:
+            docstring_style: google
+            members_order: source
+            separate_signature: true
+            show_root_heading: true
+            show_root_full_path: true
+            show_signature_annotations: true
+            show_source: true
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+
+validation:
+  nav:
+    omitted_files: ignore
+  links:
+    absolute_links: warn
+    anchors: warn
+    unrecognized_links: warn

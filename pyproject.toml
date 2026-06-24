@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mojogp"
+version = "0.26.6.0"
+description = "GPU-accelerated Gaussian Process library using Mojo kernels"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "caspbian" }]
+requires-python = ">=3.10,<3.12"
+keywords = ["gaussian-processes", "mojo", "gpu", "machine-learning"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy",
+    "mojo==0.25.7.0",
+    "max==25.7.0",
+    "sympy>=1.12",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+test = [
+    "gpytorch",
+    "linear_operator",
+    "torch>=2.11.0",
+    "pytest>=7.0",
+    "scipy>=1.7.0",
+    "matplotlib>=3.5.0",
+    "scikit-learn",
+    "properscoring>=0.1",
+    "psutil>=5.8.0",
+]
+docs = [
+    "griffe>=1.14.0",
+    "mkdocs-material>=9.6.0",
+    "mkdocstrings[python]>=0.30.0",
+]
+notebooks = [
+    "marimo>=0.23.1",
+    "matplotlib",
+    "scikit-learn",
+    "tqdm",
+]
+sm75 = ["mojogp-cuda-sm75==0.26.6.0"]
+sm_75 = ["mojogp-cuda-sm75==0.26.6.0"]
+sm80 = ["mojogp-cuda-sm80==0.26.6.0"]
+sm_80 = ["mojogp-cuda-sm80==0.26.6.0"]
+sm86 = ["mojogp-cuda-sm86==0.26.6.0"]
+sm_86 = ["mojogp-cuda-sm86==0.26.6.0"]
+sm89 = ["mojogp-cuda-sm89==0.26.6.0"]
+sm_89 = ["mojogp-cuda-sm89==0.26.6.0"]
+sm90 = ["mojogp-cuda-sm90==0.26.6.0"]
+sm_90 = ["mojogp-cuda-sm90==0.26.6.0"]
+sm100 = ["mojogp-cuda-sm100==0.26.6.0"]
+sm_100 = ["mojogp-cuda-sm100==0.26.6.0"]
+sm120 = ["mojogp-cuda-sm120==0.26.6.0"]
+sm_120 = ["mojogp-cuda-sm120==0.26.6.0"]
+
+[project.urls]
+Homepage = "https://github.com/caspbian/mojogp"
+Documentation = "https://caspbian.github.io/mojogp/"
+Repository = "https://github.com/caspbian/mojogp"
+Issues = "https://github.com/caspbian/mojogp/issues"
+
+[tool.setuptools.packages.find]
+include = ["mojogp*"]
+
+[tool.setuptools.package-data]
+mojogp = ["**/*.mojo"]
+
+[tool.uv.sources]
+mojogp-cuda-sm75 = { path = "accelerator_packages/sm75" }
+mojogp-cuda-sm80 = { path = "accelerator_packages/sm80" }
+mojogp-cuda-sm86 = { path = "accelerator_packages/sm86" }
+mojogp-cuda-sm89 = { path = "accelerator_packages/sm89" }
+mojogp-cuda-sm90 = { path = "accelerator_packages/sm90" }
+mojogp-cuda-sm100 = { path = "accelerator_packages/sm100" }
+mojogp-cuda-sm120 = { path = "accelerator_packages/sm120" }

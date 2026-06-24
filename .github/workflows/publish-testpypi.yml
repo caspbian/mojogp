@@ -1,0 +1,103 @@
+name: Publish to TestPyPI
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-and-publish:
+    name: Build and publish TestPyPI packages
+    runs-on: ubuntu-22.04
+    environment: testpypi
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install packaging tools
+        run: python -m pip install --upgrade pip build twine
+
+      - name: Build distributions
+        run: |
+          set -euo pipefail
+          mkdir -p dist/mojogp
+          python -m build --outdir dist/mojogp
+          for target in sm75 sm80 sm86 sm89 sm90 sm100 sm120; do
+            package="mojogp-cuda-${target}"
+            mkdir -p "dist/${package}"
+            python -m build --outdir "dist/${package}" "accelerator_packages/${target}"
+          done
+
+      - name: Check distributions
+        run: python -m twine check dist/*/*
+
+      - name: Upload distribution artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mojogp-0.26.6.0-dist
+          path: dist/**/*
+          if-no-files-found: error
+
+      - name: Publish mojogp to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          packages-dir: dist/mojogp/
+          skip-existing: true
+
+      - name: Publish mojogp-cuda-sm75 to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          packages-dir: dist/mojogp-cuda-sm75/
+          skip-existing: true
+
+      - name: Publish mojogp-cuda-sm80 to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          packages-dir: dist/mojogp-cuda-sm80/
+          skip-existing: true
+
+      - name: Publish mojogp-cuda-sm86 to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          packages-dir: dist/mojogp-cuda-sm86/
+          skip-existing: true
+
+      - name: Publish mojogp-cuda-sm89 to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          packages-dir: dist/mojogp-cuda-sm89/
+          skip-existing: true
+
+      - name: Publish mojogp-cuda-sm90 to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          packages-dir: dist/mojogp-cuda-sm90/
+          skip-existing: true
+
+      - name: Publish mojogp-cuda-sm100 to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          packages-dir: dist/mojogp-cuda-sm100/
+          skip-existing: true
+
+      - name: Publish mojogp-cuda-sm120 to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          packages-dir: dist/mojogp-cuda-sm120/
+          skip-existing: true

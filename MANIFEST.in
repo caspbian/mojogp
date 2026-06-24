@@ -1,0 +1,15 @@
+include README.md
+include LICENSE
+recursive-include mojogp *.py *.mojo
+recursive-exclude * __pycache__ *.py[cod]
+exclude mojogp_jit_engine.so
+prune archive
+prune benchmark_data_vast
+prune isolated_engine_loads
+prune max_runtime_libs
+prune max_sdk_bundle
+prune node_modules
+prune ref
+prune results
+prune tests
+prune tmp
