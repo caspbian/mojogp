@@ -4,6 +4,10 @@ set -eu
 repo_root=$(git rev-parse --show-toplevel)
 
 remote_name="${1:-}"
+refs_file=$(mktemp "${TMPDIR:-/tmp}/mojogp_pre_push_refs_XXXXXX")
+trap 'rm -f "$refs_file"' EXIT HUP INT TERM
+
+cat > "$refs_file"
 
 while read local_ref local_oid remote_ref remote_oid
 do
@@ -34,4 +38,8 @@ do
     esac
 
     python3 "$repo_root/.github/commit_checks/check_conventional_commits.py" --range "$commit_range" --allow-empty-range $exclude_remotes
-done
+done < "$refs_file"
+
+if git lfs version >/dev/null 2>&1; then
+    git lfs pre-push "$@" < "$refs_file"
+fi
