@@ -1,17 +1,24 @@
 # Installation
 
-MojoGP's first public install path is the target-specific Python package extra.
-MojoGP currently supports Python 3.10 and 3.11.
+MojoGP's current public install path is a source build. MojoGP currently
+supports Python 3.10 and 3.11.
 
 ```bash
-pip install "mojogp[sm89]"  # L4 / RTX 40-series
+git clone https://github.com/caspbian/mojogp.git
+cd mojogp
+pip install -e .
+mojo build mojogp/kernels/jit/jit_engine_bindings.mojo \
+  --emit shared-lib \
+  -I mojogp/ \
+  -o mojogp_jit_engine.so \
+  --target-accelerator sm_89
 ```
 
-The base `mojogp` package installs the Python API and shared runtime
-dependencies, but normal GPU use should install the accelerator extra for the
-GPU target you will run on. `pip` cannot reliably choose that extra from local
-hardware because installation often happens in CI, containers, or login nodes
-that do not match the runtime GPU.
+After package publication, the base `mojogp` package installs the Python API
+and shared runtime dependencies. Normal GPU use should install the accelerator
+extra for the GPU target you will run on. `pip` cannot reliably choose that
+extra from local hardware because installation often happens in CI, containers,
+or login nodes that do not match the runtime GPU.
 
 Installing the matching extra is normally enough. MojoGP detects the CUDA compute
 capability at runtime and loads the matching installed accelerator package.
@@ -19,7 +26,7 @@ Set `GPU_TARGET` only when you need to force a specific target, such as in CI,
 containers, login-node workflows, or environments with multiple installed
 accelerator packages.
 
-Choose the matching accelerator extra:
+After package publication, choose the matching accelerator extra:
 
 ```bash
 pip install "mojogp[sm80]"  # A100
@@ -46,25 +53,26 @@ Mojo, and MAX.
 Install comparison and test dependencies only when you need them:
 
 ```bash
-pip install "mojogp[test]"
+pip install -e ".[test]"
 ```
 
 Install notebook dependencies when running the marimo notebooks:
 
 ```bash
-pip install "mojogp[notebooks]"
+pip install -e ".[notebooks]"
 ```
 
 Install documentation build dependencies when building the docs locally:
 
 ```bash
-pip install "mojogp[docs]"
+pip install -e ".[docs]"
 ```
 
 ## Native Mojo Kernels
 
-MojoGP loads a prebuilt JIT engine from the matching accelerator package. No
-repository-local build step is part of the normal public user workflow.
+For source builds, MojoGP loads the repository-local `mojogp_jit_engine.so`
+compiled by the `mojo build` command above. After package publication, MojoGP
+can also load a prebuilt JIT engine from the matching accelerator package.
 
 Set `GPU_TARGET` before running only if you need to force a specific accelerator
 target:
@@ -89,7 +97,7 @@ they are installed by the optional `test` extra.
 ### Missing Accelerator Package
 
 If MojoGP reports that an accelerator package is missing, install the matching
-extra for the detected or requested target:
+extra for the detected or requested target after packages are published:
 
 ```bash
 pip install --upgrade "mojogp[sm89]"

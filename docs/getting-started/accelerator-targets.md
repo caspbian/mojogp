@@ -28,7 +28,7 @@ minimal fit/predict smoke on hardware with that compute capability.
 Build by compute capability, not by PCIe/SXM form factor. For example, A100 PCIe
 and A100 SXM both use `sm_80`.
 
-| GPU family | Compute capability | Target | Package extra | Runtime example | Source-build target |
+| GPU family | Compute capability | Target | Planned package extra | Runtime example | Source-build target |
 |---|---:|---|---|---|---|
 | GTX 10-series consumer cards | 6.1 | `sm_61` | not available in Mojo 0.25.7.0 build check | n/a | build failed in current toolchain |
 | V100 | 7.0 | `sm_70` | not available in Mojo 0.25.7.0 build check | n/a | build failed in current toolchain |
@@ -56,16 +56,17 @@ for that target.
 
 ## Installed Package Workflow
 
-For normal package installs, no repository-local build step is required. Install
-the matching accelerator extra, then set the target when launching the program
-if you want to force a specific route:
+After package publication, no repository-local build step is required. Install
+the matching accelerator extra, then set the target when launching the program if
+you want to force a specific route:
 
 ```bash
 pip install "mojogp[sm89]"
 GPU_TARGET=sm_89 python train.py
 ```
 
-The underscored extra alias also works, for example `pip install "mojogp[sm_89]"`.
+The underscored extra alias will also work, for example
+`pip install "mojogp[sm_89]"`.
 
 Accelerator package versions must exactly match the base package version. For
 release `0.26.6.0`, the package set is:
@@ -86,9 +87,12 @@ missing or does not match the base package version.
 
 ## Source Build Workflow
 
-When building MojoGP from a checkout, pass the same target to `mojo build`:
+When building MojoGP from a checkout, pass the target you need to `mojo build`:
 
 ```bash
+git clone https://github.com/caspbian/mojogp.git
+cd mojogp
+pip install -e .
 mojo build mojogp/kernels/jit/jit_engine_bindings.mojo \
   --emit shared-lib \
   -I mojogp/ \
@@ -105,7 +109,7 @@ capability.
 Before publishing docs changes, build and review the site locally:
 
 ```bash
-pip install "mojogp[docs]"
+pip install -e ".[docs]"
 mkdocs build --strict -f docs/mkdocs.yml
 mkdocs serve -f docs/mkdocs.yml
 ```

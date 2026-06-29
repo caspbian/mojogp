@@ -59,8 +59,8 @@ Mojo, and MAX. The current build has been tested with Mojo 0.25.7.0 and MAX
 
 ## Build From Source
 
-For development or custom accelerator builds, clone the repository and build the
-JIT engine locally:
+For now, build MojoGP from source. This workflow clones the source, installs the
+Python package, and builds one JIT engine locally for the GPU target you choose:
 
 ```bash
 git clone https://github.com/caspbian/mojogp.git
