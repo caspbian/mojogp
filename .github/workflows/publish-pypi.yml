@@ -5,13 +5,11 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
-  build-and-publish:
-    name: Build and publish PyPI packages
+  build:
+    name: Build PyPI distributions
     runs-on: ubuntu-22.04
-    environment: pypi
 
     steps:
       - name: Check out repository
@@ -45,43 +43,171 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mojogp-0.26.6.0-dist
-          path: dist/**/*
+          path: dist/
           if-no-files-found: error
+
+  publish-mojogp:
+    name: Publish mojogp to PyPI
+    needs: build
+    runs-on: ubuntu-22.04
+    environment: pypi-mojogp
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: mojogp-0.26.6.0-dist
+          path: dist
 
       - name: Publish mojogp to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist/mojogp/
 
+  publish-sm75:
+    name: Publish mojogp-cuda-sm75 to PyPI
+    needs: build
+    runs-on: ubuntu-22.04
+    environment: pypi-cuda-sm75
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: mojogp-0.26.6.0-dist
+          path: dist
+
       - name: Publish mojogp-cuda-sm75 to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist/mojogp-cuda-sm75/
+
+  publish-sm80:
+    name: Publish mojogp-cuda-sm80 to PyPI
+    needs: build
+    runs-on: ubuntu-22.04
+    environment: pypi-cuda-sm80
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: mojogp-0.26.6.0-dist
+          path: dist
 
       - name: Publish mojogp-cuda-sm80 to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist/mojogp-cuda-sm80/
 
+  publish-sm86:
+    name: Publish mojogp-cuda-sm86 to PyPI
+    needs: build
+    runs-on: ubuntu-22.04
+    environment: pypi-cuda-sm86
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: mojogp-0.26.6.0-dist
+          path: dist
+
       - name: Publish mojogp-cuda-sm86 to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist/mojogp-cuda-sm86/
+
+  publish-sm89:
+    name: Publish mojogp-cuda-sm89 to PyPI
+    needs: build
+    runs-on: ubuntu-22.04
+    environment: pypi-cuda-sm89
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: mojogp-0.26.6.0-dist
+          path: dist
 
       - name: Publish mojogp-cuda-sm89 to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist/mojogp-cuda-sm89/
 
+  publish-sm90:
+    name: Publish mojogp-cuda-sm90 to PyPI
+    needs: build
+    runs-on: ubuntu-22.04
+    environment: pypi-cuda-sm90
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: mojogp-0.26.6.0-dist
+          path: dist
+
       - name: Publish mojogp-cuda-sm90 to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist/mojogp-cuda-sm90/
 
+  publish-sm100:
+    name: Publish mojogp-cuda-sm100 to PyPI
+    needs: build
+    runs-on: ubuntu-22.04
+    environment: pypi-cuda-sm100
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: mojogp-0.26.6.0-dist
+          path: dist
+
       - name: Publish mojogp-cuda-sm100 to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist/mojogp-cuda-sm100/
+
+  publish-sm120:
+    name: Publish mojogp-cuda-sm120 to PyPI
+    needs: build
+    runs-on: ubuntu-22.04
+    environment: pypi-cuda-sm120
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: mojogp-0.26.6.0-dist
+          path: dist
 
       - name: Publish mojogp-cuda-sm120 to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
