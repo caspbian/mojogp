@@ -2,6 +2,17 @@ name: Publish to PyPI
 
 on:
   workflow_dispatch:
+    inputs:
+      package-set:
+        description: "Package batch to publish"
+        required: true
+        default: all
+        type: choice
+        options:
+          - group1
+          - group2
+          - group3
+          - all
 
 permissions:
   contents: read
@@ -49,6 +60,7 @@ jobs:
   publish-mojogp:
     name: Publish mojogp to PyPI
     needs: build
+    if: ${{ github.event.inputs.package-set == 'group1' || github.event.inputs.package-set == 'all' }}
     runs-on: ubuntu-22.04
     environment: pypi-mojogp
     permissions:
@@ -70,6 +82,7 @@ jobs:
   publish-sm75:
     name: Publish mojogp-cuda-sm75 to PyPI
     needs: build
+    if: ${{ github.event.inputs.package-set == 'group1' || github.event.inputs.package-set == 'all' }}
     runs-on: ubuntu-22.04
     environment: pypi-cuda-sm75
     permissions:
@@ -91,6 +104,7 @@ jobs:
   publish-sm80:
     name: Publish mojogp-cuda-sm80 to PyPI
     needs: build
+    if: ${{ github.event.inputs.package-set == 'group1' || github.event.inputs.package-set == 'all' }}
     runs-on: ubuntu-22.04
     environment: pypi-cuda-sm80
     permissions:
@@ -112,6 +126,7 @@ jobs:
   publish-sm86:
     name: Publish mojogp-cuda-sm86 to PyPI
     needs: build
+    if: ${{ github.event.inputs.package-set == 'group2' || github.event.inputs.package-set == 'all' }}
     runs-on: ubuntu-22.04
     environment: pypi-cuda-sm86
     permissions:
@@ -133,6 +148,7 @@ jobs:
   publish-sm89:
     name: Publish mojogp-cuda-sm89 to PyPI
     needs: build
+    if: ${{ github.event.inputs.package-set == 'group2' || github.event.inputs.package-set == 'all' }}
     runs-on: ubuntu-22.04
     environment: pypi-cuda-sm89
     permissions:
@@ -154,6 +170,7 @@ jobs:
   publish-sm90:
     name: Publish mojogp-cuda-sm90 to PyPI
     needs: build
+    if: ${{ github.event.inputs.package-set == 'group2' || github.event.inputs.package-set == 'all' }}
     runs-on: ubuntu-22.04
     environment: pypi-cuda-sm90
     permissions:
@@ -175,6 +192,7 @@ jobs:
   publish-sm100:
     name: Publish mojogp-cuda-sm100 to PyPI
     needs: build
+    if: ${{ github.event.inputs.package-set == 'group3' || github.event.inputs.package-set == 'all' }}
     runs-on: ubuntu-22.04
     environment: pypi-cuda-sm100
     permissions:
@@ -196,6 +214,7 @@ jobs:
   publish-sm120:
     name: Publish mojogp-cuda-sm120 to PyPI
     needs: build
+    if: ${{ github.event.inputs.package-set == 'group3' || github.event.inputs.package-set == 'all' }}
     runs-on: ubuntu-22.04
     environment: pypi-cuda-sm120
     permissions:
