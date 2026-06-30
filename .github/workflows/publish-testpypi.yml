@@ -18,8 +18,23 @@ permissions:
   contents: read
 
 jobs:
+  guard-testpypi-branch:
+    name: Guard TestPyPI branch
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Require public TestPyPI branch
+        run: |
+          set -euo pipefail
+          ref_name="${GITHUB_REF_NAME}"
+          if [ "$ref_name" != "dev" ]; then
+            echo "TestPyPI publishing must run from dev, not '${ref_name}'."
+            exit 1
+          fi
+
   build:
     name: Build TestPyPI distributions
+    needs: guard-testpypi-branch
     runs-on: ubuntu-22.04
 
     steps:

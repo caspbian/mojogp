@@ -18,8 +18,22 @@ permissions:
   contents: read
 
 jobs:
+  guard-pypi-branch:
+    name: Guard PyPI branch
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Require main branch
+        run: |
+          set -euo pipefail
+          if [ "${GITHUB_REF_NAME}" != "main" ]; then
+            echo "PyPI publishing must run from main, not '${GITHUB_REF_NAME}'."
+            exit 1
+          fi
+
   build:
     name: Build PyPI distributions
+    needs: guard-pypi-branch
     runs-on: ubuntu-22.04
 
     steps:
