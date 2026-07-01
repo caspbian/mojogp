@@ -1,0 +1,96 @@
+{
+  "version": 2,
+  "marimo_version": "0.23.1",
+  "artifacts": [
+    {
+      "source": "notebooks/examples/01_hello_gp.py",
+      "source_sha256": "b0a5338cdec5bb6244c3705ab48ef0da03a8e68033fff351a8983442a381735f",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/01_hello_gp.ipynb",
+      "html": "notebooks/examples/__marimo__/html/01_hello_gp.html"
+    },
+    {
+      "source": "notebooks/examples/02_diabetes_ard.py",
+      "source_sha256": "8bda0e6a64da2df4ee68081c4878dbfdbb9d6112df0a194ba07253d6b98b456d",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/02_diabetes_ard.ipynb",
+      "html": "notebooks/examples/__marimo__/html/02_diabetes_ard.html"
+    },
+    {
+      "source": "notebooks/examples/03_mauna_loa_co2.py",
+      "source_sha256": "ad24fd5a1226560d42145ccc4a1b5321c0c71d26530eebe71a9ee2a828b2417c",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/03_mauna_loa_co2.ipynb",
+      "html": "notebooks/examples/__marimo__/html/03_mauna_loa_co2.html"
+    },
+    {
+      "source": "notebooks/examples/04_multi_output.py",
+      "source_sha256": "d62fc0ffd02e3433a36c9a5c536d5748de159213192b7fc486d6a6fc2c8afa79",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/04_multi_output.ipynb",
+      "html": "notebooks/examples/__marimo__/html/04_multi_output.html"
+    },
+    {
+      "source": "notebooks/examples/05_scaling.py",
+      "source_sha256": "620a5952b69c4b52e269e9ca4dad41e0e4428c415bc77edaff5db880a7ef569f",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/05_scaling.ipynb",
+      "html": "notebooks/examples/__marimo__/html/05_scaling.html"
+    },
+    {
+      "source": "notebooks/examples/06_constant_mean_function.py",
+      "source_sha256": "f2a40a48f726ad5da7ed4efeb1abaf8318b37744456349ba0c76a6a2409a9385",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/06_constant_mean_function.ipynb",
+      "html": "notebooks/examples/__marimo__/html/06_constant_mean_function.html"
+    },
+    {
+      "source": "notebooks/examples/08_ard_vs_isotropic.py",
+      "source_sha256": "c04b6039a9657660140afa0110f6931ae6e10fe5a710623b1c963f29ebb80602",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/08_ard_vs_isotropic.ipynb",
+      "html": "notebooks/examples/__marimo__/html/08_ard_vs_isotropic.html"
+    },
+    {
+      "source": "notebooks/examples/09_discrete_variables.py",
+      "source_sha256": "5d344ff491c65c55270a595216a8e2cf9f64314a04b374a2ea52aec07404e2f5",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/09_discrete_variables.ipynb",
+      "html": "notebooks/examples/__marimo__/html/09_discrete_variables.html"
+    },
+    {
+      "source": "notebooks/examples/10_predictive_uncertainty_and_love_variance.py",
+      "source_sha256": "2d5cc4be8f1286e39f965d2ae5fe91a8c1aceb76559beed99f58f549e563ff4a",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/10_predictive_uncertainty_and_love_variance.ipynb",
+      "html": "notebooks/examples/__marimo__/html/10_predictive_uncertainty_and_love_variance.html"
+    },
+    {
+      "source": "notebooks/examples/11_fixed_observation_noise.py",
+      "source_sha256": "fbc35a96f11f7e56e5de566f89731280f39e3e93a3e0fa320ad548663b57e8e4",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/11_fixed_observation_noise.ipynb",
+      "html": "notebooks/examples/__marimo__/html/11_fixed_observation_noise.html"
+    },
+    {
+      "source": "notebooks/examples/12_grouped_observation_noise.py",
+      "source_sha256": "77e266d93781ad68d52266d760b924352e468515c2ab1053c4729448067fd10e",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/12_grouped_observation_noise.ipynb",
+      "html": "notebooks/examples/__marimo__/html/12_grouped_observation_noise.html"
+    },
+    {
+      "source": "notebooks/examples/14_input_dependent_observation_noise.py",
+      "source_sha256": "5fdf09363a5ec91c38a53859966adbf77db826e9bc904d388cb736e50dcfde5f",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/14_input_dependent_observation_noise.ipynb",
+      "html": "notebooks/examples/__marimo__/html/14_input_dependent_observation_noise.html"
+    },
+    {
+      "source": "notebooks/examples/15_categorical_ablation.py",
+      "source_sha256": "7aa00524208864899d59eed30e32c262fac61240316c12833e674754f58ff93b",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/15_categorical_ablation.ipynb",
+      "html": "notebooks/examples/__marimo__/html/15_categorical_ablation.html"
+    },
+    {
+      "source": "notebooks/examples/17_model_persistence_roundtrip.py",
+      "source_sha256": "582304a6f95b3331daa55a8699c76d7294ea9167af7410b39ca2b84253ca8f96",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/17_model_persistence_roundtrip.ipynb",
+      "html": "notebooks/examples/__marimo__/html/17_model_persistence_roundtrip.html"
+    },
+    {
+      "source": "notebooks/examples/18_posterior_sampling_methods.py",
+      "source_sha256": "2676d50f1c07a2d082ae1a193605bee6357157bf871d4c6e02dc98fe361ed937",
+      "ipynb": "notebooks/examples/__marimo__/ipynb/18_posterior_sampling_methods.ipynb",
+      "html": "notebooks/examples/__marimo__/html/18_posterior_sampling_methods.html"
+    }
+  ]
+}

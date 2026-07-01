@@ -372,8 +372,10 @@ def _(
     _video_html = _animation.to_html5_video().replace(
         " controls autoplay loop>", " controls autoplay loop muted playsinline>"
     )
+    _update(len(frame_counts) - 1)
     _plot = mo.vstack(
         [
+            mo.mpl.interactive(_fig),
             mo.md(
                 """
                 ## Cumulative Sampling Animation

@@ -1,0 +1,40 @@
+---
+name: Check rendered marimo notebooks
+
+"on":
+  push:
+    paths:
+      - "notebooks/examples/**/*.py"
+      - "notebooks/examples/__marimo__/**"
+      - "tools/render_marimo_notebooks.py"
+      - "pyproject.toml"
+      - ".github/workflows/render-marimo-notebooks.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    name: Check GitHub notebook previews
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check rendered notebooks
+        run: |
+          set -euo pipefail
+          uv run --extra notebooks \
+            --with marimo==0.23.1 \
+            --with nbformat \
+            python tools/render_marimo_notebooks.py --check

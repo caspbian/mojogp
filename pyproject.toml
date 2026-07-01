@@ -47,6 +47,7 @@ docs = [
 ]
 notebooks = [
     "marimo>=0.23.1",
+    "nbformat",
     "matplotlib",
     "scikit-learn",
     "tqdm",

@@ -50,17 +50,36 @@ See [`notebooks/examples/`](notebooks/examples/) for runnable examples covering:
 
 ## Install
 
-PyPI packages are in development. For now, install MojoGP from source.
+MojoGP is compatible with Python 3.10 and 3.11.
 
-Minimum runtime dependencies are Python 3.10 or 3.11, NumPy, SymPy, tqdm,
-Mojo, and MAX. The current build has been tested with Mojo 0.25.7.0 and MAX
-25.7.0.
+Install the PyPI package for your NVIDIA GPU:
+
+```bash
+pip install "mojogp[sm89]"
+```
+
+Use `PyPI` for package installs and `Target` for building from source.
+
+| GPU family | PyPI | Target |
+|---|---|---|
+| T4 / RTX 20-series / Quadro RTX | `mojogp[sm75]` | `sm_75` |
+| A100 / A30 | `mojogp[sm80]` | `sm_80` |
+| A40 / A10 / A16 / A2 / RTX 30-series / RTX A-series | `mojogp[sm86]` | `sm_86` |
+| L4 / L40 / L40S / RTX 40-series / RTX Ada | `mojogp[sm89]` | `sm_89` |
+| GH200 / H100 / H200 | `mojogp[sm90]` | `sm_90` |
+| B200 / GB200 | `mojogp[sm100]` | `sm_100` |
+| RTX PRO Blackwell / GeForce RTX 50-series | `mojogp[sm120]` | `sm_120` |
+
+Pinned release:
+
+```bash
+pip install "mojogp[sm89]==0.26.6.0"
+```
 
 
-## Build From Source
+### Build from Source
 
-For now, build MojoGP from source. This workflow clones the source, installs the
-Python package, and builds one JIT engine locally for the GPU target you choose:
+To build locally:
 
 ```bash
 git clone https://github.com/caspbian/mojogp.git
@@ -73,18 +92,7 @@ mojo build mojogp/kernels/jit/jit_engine_bindings.mojo \
   --target-accelerator sm_89
 ```
 
-Use the Mojo accelerator target that matches your GPU:
-
-
-| GPU family | Target |
-|---|---|
-| T4 / RTX 20-series / Quadro RTX | `sm_75` |
-| A100 / A30 | `sm_80` |
-| A40 / A10 / A16 / A2 / RTX 30-series / RTX A-series | `sm_86` |
-| L4 / L40 / L40S / RTX 40-series / RTX Ada | `sm_89` |
-| GH200 / H100 / H200 | `sm_90` |
-| B200 / GB200 | `sm_100` |
-| RTX PRO Blackwell / GeForce RTX 50-series | `sm_120` |
+Replace `sm_89` with the `Target` value that matches your GPU.
 
 
 ## Hello World

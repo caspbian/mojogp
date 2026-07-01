@@ -92,7 +92,13 @@ notebooks/*
 !notebooks/examples/
 !notebooks/examples/*.py
 !notebooks/examples/README.md
-notebooks/examples/__marimo__/
+!notebooks/examples/__marimo__/
+notebooks/examples/__marimo__/*
+!notebooks/examples/__marimo__/ipynb/
+!notebooks/examples/__marimo__/ipynb/*.ipynb
+!notebooks/examples/__marimo__/html/
+!notebooks/examples/__marimo__/html/*.html
+!notebooks/examples/__marimo__/render_manifest.json
 
 # Documentation build outputs and internal notes
 site/
@@ -138,7 +144,9 @@ configs/
 !/scripts/summarize_benchmark_scaling.py
 !/scripts/validate_blocked_blas_exact_prediction.py
 !/scripts/vastai_distributed_scaling.py
-tools/
+/tools/*
+!/tools/validate_notebooks.py
+!/tools/render_marimo_notebooks.py
 mojo_docs/
 papers/
 .dockerignore
